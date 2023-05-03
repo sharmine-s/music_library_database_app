@@ -21,6 +21,17 @@ describe Application do
     end
   end
 
+  context "GET /albums/:id" do
+    it "returns the album with the specific given id" do
+      response = get("/albums/2")
+
+      expect(response.status).to eq(200)
+      expect(response.body).to include("<h1>Surfer Rosa</h1>")
+      expect(response.body).to include("Release year: 1988")
+      expect(response.body).to include("Artist: Pixies")
+    end
+  end
+
   context "POST /albums" do
     it "should create a new album" do
       response = post("/albums", title: "Voulez-Vous", release_year: "1979", artist_id: "2")
@@ -43,6 +54,16 @@ describe Application do
     end
   end
 
+  context "GET /artists/:id" do
+    it "returns the artist with the specific given id" do
+      response = get("/artists/2")
+
+      expect(response.status).to eq(200)
+      expect(response.body).to include("ABBA")
+      expect(response.body).to include("Pop")
+    end
+  end
+
   context "POST /artists" do
     it "should create a new artist" do
       response = post("/artists", name: "Miley Cyrus", genre: "Pop")
@@ -53,17 +74,6 @@ describe Application do
       get = get("/artists")
 
       expect(get.body).to include("Miley Cyrus")
-    end
-  end
-
-  context "GET /albums/:id" do
-    it "returns the album with the specific given id" do
-      response = get("/albums/2")
-
-      expect(response.status).to eq(200)
-      expect(response.body).to include("<h1>Surfer Rosa</h1>")
-      expect(response.body).to include("Release year: 1988")
-      expect(response.body).to include("Artist: Pixies")
     end
   end
 
