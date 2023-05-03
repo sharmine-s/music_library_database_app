@@ -50,7 +50,7 @@ describe Application do
       response = get("/artists")
 
       expect(response.status).to eq(200)
-      expect(response.body).to eq("Pixies, ABBA, Taylor Swift, Nina Simone, Kiasmos")
+      expect(response.body).to include('<a href="/artists/2">ABBA</a>')
     end
   end
 
