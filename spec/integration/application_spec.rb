@@ -43,4 +43,17 @@ describe Application do
     end
   end
 
+  context "POST /artists" do
+    it "should create a new artist" do
+      response = post("/artists", name: "Miley Cyrus", genre: "Pop")
+
+      expect(response.status).to eq(200)
+      expect(response.body).to eq("")
+
+      get = get("/artists")
+
+      expect(get.body).to include("Miley Cyrus")
+    end
+  end
+
 end
