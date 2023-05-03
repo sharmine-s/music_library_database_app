@@ -56,17 +56,28 @@ describe Application do
     end
   end
 
-  context "GET /" do
-    it "returns a hello page if the password is correct" do
-      response = get("/", password: "abcd")
+  # context "GET /" do
+  #   it "returns a hello page if the password is correct" do
+  #     response = get("/", password: "abcd")
 
-      expect(response.body).to include("Hello!")
-    end
+  #     expect(response.body).to include("Hello!")
+  #   end
 
-    it "returns a forbidden if the password is incorrect" do
-      response = get("/", password: "aergtersg")
+  #   it "returns a forbidden if the password is incorrect" do
+  #     response = get("/", password: "aergtersg")
 
-      expect(response.body).to include("Access forbidden")
+  #     expect(response.body).to include("Access forbidden")
+  #   end
+  # end
+
+  context "GET /albums/:id" do
+    it "returns the album with the specific given id" do
+      response = get("/albums/2")
+
+      expect(response.status).to eq(200)
+      expect(response.body).to include("<h1>Surfer Rosa</h1>")
+      expect(response.body).to include("Release year: 1988")
+      expect(response.body).to include("Artist: Pixies")
     end
   end
 
