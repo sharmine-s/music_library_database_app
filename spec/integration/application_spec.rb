@@ -56,4 +56,18 @@ describe Application do
     end
   end
 
+  context "GET /" do
+    it "returns a hello page if the password is correct" do
+      response = get("/", password: "abcd")
+
+      expect(response.body).to include("Hello!")
+    end
+
+    it "returns a forbidden if the password is incorrect" do
+      response = get("/", password: "aergtersg")
+
+      expect(response.body).to include("Access forbidden")
+    end
+  end
+
 end
