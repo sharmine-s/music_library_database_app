@@ -15,16 +15,18 @@ class Application < Sinatra::Base
   end
   
   get "/" do
-    @password = params[:password]
-
     return erb(:index)
+  end
+
+  get "/about" do
+    return erb(:about)
   end
 
   get "/albums" do
     repo = AlbumRepository.new
     @albums = repo.all
 
-    return erb(:album)
+    return erb(:albums)
   end
 
   get "/albums/:id" do
@@ -36,7 +38,7 @@ class Application < Sinatra::Base
     @release_year = album.release_year
     @artist = repo2.find(album.artist_id).name
 
-    return erb(:index)
+    return erb(:album)
   end
 
   post "/albums" do

@@ -15,8 +15,9 @@ describe Application do
       response = get("/albums")
 
       expect(response.status).to eq(200)
-      expect(response.body).to include("Title: Surfer Rosa")
+      expect(response.body).to include('Title: <a href="/albums/2">Surfer Rosa</a>')
       expect(response.body).to include("Released: 1988")
+      expect(response.body).to include('Title: <a href="/albums/3">Waterloo</a>')
     end
   end
 
@@ -54,20 +55,6 @@ describe Application do
       expect(get.body).to include("Miley Cyrus")
     end
   end
-
-  # context "GET /" do
-  #   it "returns a hello page if the password is correct" do
-  #     response = get("/", password: "abcd")
-
-  #     expect(response.body).to include("Hello!")
-  #   end
-
-  #   it "returns a forbidden if the password is incorrect" do
-  #     response = get("/", password: "aergtersg")
-
-  #     expect(response.body).to include("Access forbidden")
-  #   end
-  # end
 
   context "GET /albums/:id" do
     it "returns the album with the specific given id" do
