@@ -77,4 +77,13 @@ describe Application do
     end
   end
 
+  context "GET /albums/new" do
+    it "returns the form page to create a new album" do
+      response = get("/albums/new")
+
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<form method="POST" action="/albums">')
+    end
+  end
+
 end
