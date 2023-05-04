@@ -37,7 +37,7 @@ describe Application do
       response = post("/albums", title: "Voulez-Vous", release_year: "1979", artist_id: "2")
 
       expect(response.status).to eq(200)
-      expect(response.body).to eq("Album created!")
+      expect(response.body).to include("Album Voulez-Vous created!")
 
       get = get("/albums")
 

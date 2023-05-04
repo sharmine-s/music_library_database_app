@@ -56,6 +56,8 @@ class Application < Sinatra::Base
 
     repo.create(new_album)
     
+    @new_album_title = params[:title]
+    
     return erb(:album_created)
   end
 
